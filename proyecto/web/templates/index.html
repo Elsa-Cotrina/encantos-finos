@@ -73,55 +73,37 @@
                             <h3 class="widgettitle">Categorias</h3>
                             <div class="section-sb-current">
                                 <ul class="section-sb-list">
+                                    {% for categoria in categorias %}
                                     <li>
-                                        <a href="#"><span class="section-sb-label">Electricity <span
+                                        <a href="#"><span class="section-sb-label">{{categoria.nombre}}<span
                                                     class="count">6</span></span></a>
                                     </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
 
-
-                        <div class="blog-sb-widget multishopfeaturedproducts_widget">
-                            <h3 class="widgettitle">Featured</h3>
+                        <div class="blog-sb-widget multishopbrands_widget">
+                            <h3 class="widgettitle">Marca</h3>
+                            <ul class="brands-list-sb">
+                                {% for marca in marca %}
+                                <li>
+                                    <a href="#">{{marca.nombre}}<span class="count">5</span></a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- <div class="blog-sb-widget multishopfeaturedproducts_widget">
+                            <h3 class="widgettitle">Producto</h3>
                             <div class="products-featured-wrap">
+                                {% for producto in productos %}
                                 <div class="products-featured">
-                                    <p class="products-featured-categ">
-                                        <a href="#">Tools</a>
-                                    </p>
-                                    <h5 class="products-featured-ttl"><a href="product.html">Rechargeable Battery</a>
+                                    <h5 class="products-featured-ttl"><a href="product.html">{{producto.nombre}}</a>
                                     </h5>
                                     <p class="products-featured-price">$201.00</p>
                                 </div>
-                                <div class="products-featured">
-                                    <p class="products-featured-categ">
-                                        <a href="#">Pipes</a>
-                                    </p>
-                                    <h5 class="products-featured-ttl"><a href="product.html">Wholesale Brass</a></h5>
-                                    <p class="products-featured-price">$15.00</p>
-                                </div>
-                                <div class="products-featured">
-                                    <p class="products-featured-categ">
-                                        <a href="#">Pipes</a>
-                                    </p>
-                                    <h5 class="products-featured-ttl"><a href="product.html">Fittings Pipe</a></h5>
-                                    <p class="products-featured-price">$77.00</p>
-                                </div>
-                                <div class="products-featured">
-                                    <p class="products-featured-categ">
-                                        <a href="#">Pipes</a>
-                                    </p>
-                                    <h5 class="products-featured-ttl"><a href="product.html">Fittings Pipe</a></h5>
-                                    <p class="products-featured-price">$105.00</p>
-                                </div>
-                                <div class="products-featured">
-                                    <p class="products-featured-categ">
-                                        <a href="#">Fasteners</a>
-                                    </p>
-                                    <h5 class="products-featured-ttl"><a href="product.html">Flat Bolt</a></h5>
-                                    <p class="products-featured-price">$45.00</p>
-                                </div>
-                            </div>
+                                {% endfor %}
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -131,11 +113,12 @@
             <div class="theiaStickySidebar">
 
                 <div class="row prod-items prod-items-2">
+                    {% for producto in productos %}
                     <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
                         <div class="sectgl prod-i">
                             <div class="prod-i-top">
                                 <a class="prod-i-img" href="product.html">
-                                    <img src="http://placehold.it/290x258" alt="">
+                                    <img src="{{producto.imagen.url}}" alt="">
                                 </a>
                                 <div class="prod-i-actions">
                                     <div class="prod-i-actions-in">
@@ -161,14 +144,15 @@
                             </div>
                             <div class="prod-i-bot">
                                 <div class="prod-i-info">
-                                    <p class="prod-i-price">$120.00</p>
-                                    <p class="prod-i-categ"><a href="catalog-gallery.html">Lighting</a></p>
+                                    <p class="prod-i-price">${{producto.precio}}</p>
+                                    <p class="prod-i-categ"><a href="catalog-gallery.html">{{producto.marca.nombre}}</a></p>
                                 </div>
-                                <h3 class="prod-i-ttl"><a href="product.html">Searchlight Portable</a></h3>
+                                <h3 class="prod-i-ttl"><a href="product.html">{{producto.nombre}}</a></h3>
                             </div>
                         </div>
                     </article>
-                    <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                    {% endfor %}
+                    <!-- <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
                         <div class="sectgl prod-i">
                             <div class="prod-i-top">
                                 <a class="prod-i-img" href="product.html">
@@ -502,7 +486,7 @@
                                 <h3 class="prod-i-ttl"><a href="product.html">Power Socket</a></h3>
                             </div>
                         </div>
-                    </article>
+                    </article> -->
                 </div>
                 <ul class="page-numbers">
                     <li><span class="page-numbers current">1</span></li>
