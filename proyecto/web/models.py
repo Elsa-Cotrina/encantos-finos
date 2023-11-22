@@ -1,5 +1,7 @@
 from django.db import models
 
+from cloudinary.models import CloudinaryField
+
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length=200)
@@ -27,7 +29,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=254)
     descripcion = models.TextField(null=True)
     precio = models.DecimalField(max_digits=5,decimal_places=2)
-    imagen = models.ImageField(upload_to='productos',blank=True)
+    imagen = CloudinaryField('image',default='')
     
     class Meta:
         db_table = 'tbl_producto'
