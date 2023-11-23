@@ -134,12 +134,69 @@ def login_usuario(request):
             }
     return render(request,'login.html',context)
 
+from .forms import ClienteForm
 
 @login_required(login_url='/login')
 def cuenta_usuario(request):
-    return render(request,'cuenta.html')
+    try:
+        cliente = Cliente.objects.get(usuario=request.user)
+
+        data_cliente = {
+            'nombre':request.user.first_name,
+            'apellidos':request.user.last_name,
+            'email':request.user.email,
+            'direccion':cliente.direccion,
+            'telefono':cliente.telefono,
+            'dni':cliente.dni,
+            'fecha_nacimiento':cliente.fecha_nacimiento
+        }
+    except:
+        data_cliente = {
+            'nombre':request.user.first_name,
+            'apellidos':request.user.last_name,
+            'email':request.user.email
+        }
+    form = ClienteForm(data_cliente)
+    context = {
+        'form' : form
+    }
+    return render(request,'cuenta.html',context)
 
 @login_required(login_url='/login')
 def logout_usuario(request):
     logout(request)
     return redirect('/cuenta')
+
+@login_required(login_url='/login')
+def actualizar_cliente(request):
+    mensaje_confirmacion = " "
+    frm_cliente = ClienteForm(request.POST)
+    if frm_cliente.is_valid():
+        data_cliente = frm_cliente.cleaned_data
+        # actualizar usuario
+        usuario = User.objects.get(pk=request.user.id)
+        usuario.first_name = data_cliente['nombre']
+        usuario.last_name = data_cliente['apellidos']
+        usuario.email = data_cliente['email']
+        usuario.save()
+
+        #actualizar o registrar cliente
+        try:
+            cliente = Cliente.objects.get(usuario=usuario)
+        except Exception as error:
+            print('error :' , error)
+            cliente = Cliente()
+            cliente.usuario = usuario
+
+        cliente.dni = data_cliente['dni']        
+        cliente.direccion = data_cliente['direccion']
+        cliente.telefono = data_cliente['telefono']
+        cliente.fecha_nacimiento = data_cliente['fecha_nacimiento']
+        cliente.save()
+        mensaje_confirmacion = 'Datos actualizados'
+
+    context = {
+        'form' : frm_cliente,
+        'mensaje':mensaje_confirmacion
+    }
+    return render(request,'cuenta.html',context)
