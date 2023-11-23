@@ -61,7 +61,6 @@ def productos_por_nombre(request):
 """ esto es para encontrar un solo producto """
 def producto(request,producto_id):
     obj_producto = Producto.objects.get(pk=producto_id)
-    print(obj_producto)
     context = {
         'producto':obj_producto
     }
@@ -99,3 +98,48 @@ def limpiar_carrito(request):
     carrito.clear()
 
     return render(request, 'carrito.html')
+
+""" VISTAS  PARA CLIENTES """
+from django.contrib.auth.models import User   
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
+from .models import Cliente
+from django.shortcuts import redirect
+
+def crear_usuario(request):
+    if request.method == 'POST':
+        data_usuario = request.POST['usuario']
+        data_password = request.POST['password']
+
+        usuario = User.objects.create_user(username= data_usuario,password=data_password)
+        if usuario is not None:
+            login(request,usuario)
+            return redirect('/cuenta')
+
+    return render(request,'login.html')
+
+def login_usuario(request):
+    context = {}
+    if request.method == 'POST':
+        data_usuario = request.POST['usuario']
+        data_password = request.POST['password']
+
+        usuario = authenticate(request,username=data_usuario,password=data_password)
+        if usuario is not None:
+            login(request,usuario)
+            return redirect('/cuenta')
+        else:
+            context = {
+                'mensaje_error' : 'Intentalo de nuevo'
+            }
+    return render(request,'login.html',context)
+
+
+@login_required(login_url='/login')
+def cuenta_usuario(request):
+    return render(request,'cuenta.html')
+
+@login_required(login_url='/login')
+def logout_usuario(request):
+    logout(request)
+    return redirect('/cuenta')

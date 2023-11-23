@@ -29,28 +29,25 @@
 
 </head>
 <body>
-<div id="page" class="site">
-
-    {% include 'includes/navBar.html' %}
-    {% include 'includes/header.html' %} 
-
-    <div id="content" class="site-content">
-        <div id="primary" class="content-area">
-            <main id="main" class="site-main">
-             {% block content %}
-             {% endblock %}
-            </main><!-- #main -->
-        </div><!-- #primary -->
-
-    </div><!-- #content -->
-
-    {% include 'includes/footer.html' %}
-    {% include 'includes/modals.html' %}
-</div><!-- #page -->
-
-<script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
-<script src="{% static 'js/jquery-plugins.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
-
-</body>
+    <div id="page" class="site">
+        {% include 'includes/navBar.html' %}
+        {% include 'includes/header.html' %}
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <main id="main" class="site-main">
+                    {%block content %}
+                    {% endblock %}
+                </main><!-- #main -->
+            </div><!-- #primary -->
+    
+        </div><!-- #content -->
+        {% include 'includes/footer.html' %}
+        {% include 'includes/modals.html' %}
+    </div><!-- #page -->
+    
+    <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/jquery-plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    
+    </body>
 </html>

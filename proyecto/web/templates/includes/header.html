@@ -1,7 +1,8 @@
+{% load static %}
 <div class="site-header">
 
     <p class="h-logo">
-        <a href="index.html"><img src="img/logo.png" alt="MultiShop"></a>
+        <a href="/"><img src="{% static 'img/logo.png' %}" alt="MultiShop"></a>
     </p><!--
 No Space
 --><div class="h-shop">
@@ -14,27 +15,17 @@ No Space
 
     <ul class="h-shop-links">
         <li class="h-search-btn" id="h-search-btn"><i class="ion-search"></i></li>
-        <li class="h-shop-icon h-wishlist">
-            <a title="Wishlist" href="wishlist.html">
-                <i class="ion-heart"></i>
-                <span>5</span>
-            </a>
-        </li>
-        <li class="h-shop-icon h-compare">
-            <a title="Compare List" href="compare.html">
-                <i class="ion-arrow-swap"></i>
-                <span>2</span>
-            </a>
-        </li>
         <li class="h-shop-icon h-profile">
-            <a href="auth.html" title="My Account">
+            <a href="{% url 'web:cuenta' %}" title="Mi cuenta">
                 <i class="ion-android-person"></i>
             </a>
             <ul class="h-profile-links">
-                <li><a href="auth.html">Login / Registration</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="compare.html">Compare</a></li>
-                <li><a href="wishlist.html">Wishlist</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'web:usuariologout' %}">Cerrar sesion</a></li>
+                {% else %}
+                    <li><a href="{% url 'web:usuariologin' %}">Acceder / Registrarse</a></li>
+                {% endif %}
+                    <li><a href="{% url 'web:carrito' %}">Carrito de compras</a></li>
             </ul>
         </li>
 

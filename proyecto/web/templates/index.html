@@ -1,7 +1,5 @@
 {% extends 'layout.html' %}
 {% block content %}
-
-
 <div class="cont maincont">
 
     <div class="section-top">
@@ -61,6 +59,7 @@
         </div>
     </div>
 
+    <!-- To make Sidebar "Not Sticky" just remove  id="section-list-withsb" -->
     <div class="section-wrap-withsb">
         <aside class="blog-sb-widgets section-sb" id="section-sb">
             <div class="theiaStickySidebar">
@@ -75,82 +74,61 @@
                                 <ul class="section-sb-list">
                                     {% for categoria in categorias %}
                                     <li>
-                                        <a href="{% url 'web:categoria' categoria.id %}"><span class="section-sb-label">{{categoria.nombre}}<span
-                                                    class="count">6</span></span></a>
+                                        <a href="{% url 'web:categoria' categoria.id %}">
+                                            <span class="section-sb-label">{{categoria.nombre}} 
+                                        <span class="count">{{categoria.producto_set.all.count}}</span></span></a>
                                     </li>
                                     {% endfor %}
                                 </ul>
                             </div>
                         </div>
-
                         <div class="blog-sb-widget multishopbrands_widget">
-                            <h3 class="widgettitle">Marca</h3>
+                            <h3 class="widgettitle">Marcas</h3>
                             <ul class="brands-list-sb">
                                 {% for marca in marcas %}
                                 <li>
-                                    <a href="{% url 'web:marca' marca.id %}">{{marca.nombre}}<span class="count">5</span></a>
+                                    <a href="{% url 'web:marca' marca.id %}">{{marca.nombre}} 
+                                        <span class="count">{{marca.producto_set.all.count}}</span></a>
                                 </li>
                                 {% endfor %}
                             </ul>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>
-        </aside>
+        </aside>        
         <div class="section-list-withsb" id="section-list-withsb">
-            <div class="theiaStickySidebar">
-
-                <div class="row prod-items prod-items-2">
-                    {% for producto in productos %}
-                    <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
-                        <div class="sectgl prod-i">
-                            <div class="prod-i-top">
-                                <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
-                                    <img src="{{producto.imagen.url}}" alt="">
-                                </a>
-                                <div class="prod-i-actions">
-                                    <div class="prod-i-actions-in">
-                                        <div class="prod-li-favorites">
-                                            <a href="wishlist.html" class="hover-label add_to_wishlist"><i
-                                                    class="icon ion-heart"></i><span>Add to Wishlist</span></a>
-                                        </div>
-                                        <p class="prod-quickview">
-                                            <a href="#" class="hover-label quick-view"><i
-                                                    class="icon ion-plus"></i><span>Quick View</span></a>
-                                        </p>
-                                        <p class="prod-i-cart">
-                                            <a href="#" class="hover-label prod-addbtn"><i
-                                                    class="icon ion-android-cart"></i><span>Add to Cart</span></a>
-                                        </p>
-                                        <p class="prod-li-compare">
-                                            <a href="compare.html"
-                                                class="hover-label prod-li-compare-btn"><span>Compare</span><i
-                                                    class="icon ion-arrow-swap"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="prod-i-bot">
-                                <div class="prod-i-info">
-                                    <p class="prod-i-price">${{producto.precio}}</p>
-                                    <p class="prod-i-categ"><a href="catalog-gallery.html">{{producto.marca.nombre}}</a></p>
-                                </div>
-                                <h3 class="prod-i-ttl"><a href="{% url 'web:producto' producto.id %}">{{producto.nombre}}</a></h3>
-                            </div>
+        <div class="theiaStickySidebar">
+            <div class="row prod-items prod-items-2">
+                {% for producto in productos %}
+                <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                    <div class="sectgl prod-i">
+                        <div class="prod-i-top">
+                            <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
+                                <img src="{{producto.imagen.url}}" alt="">
+                            </a>
                         </div>
-                    </article>
-                    {% endfor %}
-                </div>
-                <ul class="page-numbers">
-                    <li><span class="page-numbers current">1</span></li>
-                    <li><a class="page-numbers" href="#">2</a></li>
-                    <li><a class="page-numbers" href="#">3</a></li>
-                    <li><a class="page-numbers" href="#">4</a></li>
-                    <li><a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
-            </div><!-- .theiaStickySidebar -->
-        </div><!-- .section-list-withsb -->
+                        <div class="prod-i-bot">
+                            <div class="prod-i-info">
+                                <p class="prod-i-price">${{producto.precio}}</p>
+                                <p class="prod-i-categ"><a href="catalog-gallery.html">{{producto.marca.nombre}}</a></p>
+                            </div>
+                            <h3 class="prod-i-ttl"><a href="{% url 'web:producto' producto.id %}">{{producto.nombre}}</a></h3>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}        
+            </div>
+            <ul class="page-numbers">
+                <li><span class="page-numbers current">1</span></li>
+                <li><a class="page-numbers" href="#">2</a></li>
+                <li><a class="page-numbers" href="#">3</a></li>
+                <li><a class="page-numbers" href="#">4</a></li>
+                <li><a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
+        </div><!-- .theiaStickySidebar -->
+    </div><!-- .section-list-withsb -->
     </div><!-- .section-wrap-withsb -->
+
 </div>
 {% endblock %}

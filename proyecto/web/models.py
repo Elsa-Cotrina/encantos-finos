@@ -35,4 +35,18 @@ class Producto(models.Model):
         db_table = 'tbl_producto'
         
     def __str__(self):
-        return self.nombre        
+        return self.nombre  
+
+from django.contrib.auth.models import User   
+class Cliente(models.Model):
+    usuario = models.OneToOneField(User,on_delete=models.RESTRICT)
+    dni = models.CharField(max_length=8)
+    telefono = models.CharField(max_length=50)
+    fecha_nacimiento = models.DateField(null= True)
+    direccion = models.TextField()
+
+    class Meta:
+        db_table = 'tbl_cliente'
+
+    def __str__(self):
+        return self.dni   
