@@ -41,7 +41,7 @@
                             </div>
                             <div class="prod-li-total-wrap">
                                 <p class="prod-li-add">
-                                    <a href="#"
+                                    <a href="{% url 'web:carritodel' value.producto_id %}"
                                         class="button hover-label prod-addbtn"><i class="icon ion-close-round"></i></a>
                                 </p>
                             </div>
@@ -58,8 +58,8 @@
                 <input type="submit" class="button" value="Apply">
             </div>
             <div class="cart-collaterals">
-                <a href="#" class="checkout-button button">LIMPIAR CARRITO</a> -
-                <a href="#" class="checkout-button button">COMPRAR</a>
+                <a href="#" class="checkout-button button">Limpiar carrito</a>
+                <a href="#" class="checkout-button button">Comprar</a>
                 <div class="order-total">
                     <p class="cart-totals-ttl">Total</p>
                     <p class="cart-totals-val">$510.00</p>

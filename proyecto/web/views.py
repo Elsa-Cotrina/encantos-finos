@@ -74,7 +74,10 @@ def carrito(request):
     return render(request, 'carrito.html')
 
 def agregar_carrito(request,producto_id):
-    cantidad = 1
+    if request.method == 'POST':
+        cantidad = int(request.POST['cantidad'])
+    else:
+        cantidad = 1
 
     obj_producto = Producto.objects.get(pk=producto_id)
     carrito = Cart(request)
@@ -83,3 +86,16 @@ def agregar_carrito(request,producto_id):
     print(request.session.get('cart'))
 
     return render(request,'carrito.html')
+
+def eliminar_carrito(request,producto_id):
+    obj_producto = Producto.objects.get(pk=producto_id)
+    carrito = Cart(request)
+    carrito.delete(obj_producto)
+
+    return render(request,'carrito.html')
+
+def limpiar_carrito(request):
+    carrito = Cart(request)
+    carrito.clear()
+
+    return render(request, 'carrito.html')

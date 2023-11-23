@@ -40,51 +40,59 @@
             </div>
 
             <div class="prod-cont">
-                <div class="prod-rating-wrap">
-                    <p data-rating="4" class="prod-rating">
-                        <i class="rating-ico" title="1"></i><i class="rating-ico" title="2"></i><i class="rating-ico"
-                            title="3"></i><i class="rating-ico" title="4"></i><i class="rating-ico" title="5"></i>
-                    </p>
-                    <p class="prod-rating-count">7</p>
-                </div>
-                <p class="prod-categs"><a href="#">{{producto.categoria.nombre}}</a>, <a href="#">{{producto.marca.nombre}}</a></p>
-                <h1>{{producto.nombre}}</h1>
-                <div class="variations_form cart">
-                    <p class="prod-price">${{producto.precio}}</p>
-                    <div class="prod-add">
-                        <button type="submit" class="button"><i class="icon ion-android-cart"></i> Agregar al carrito</button>
-                        <p class="qnt-wrap prod-li-qnt">
-                            <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
-                            <input type="text" value="1">
-                            <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                <form action="{% url 'web:carritoadd' producto.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="prod-rating-wrap">
+                        <p data-rating="4" class="prod-rating">
+                            <i class="rating-ico" title="1"></i><i class="rating-ico" title="2"></i><i
+                                class="rating-ico" title="3"></i><i class="rating-ico" title="4"></i><i
+                                class="rating-ico" title="5"></i>
                         </p>
-                        <div class="prod-li-favorites">
-                            <a href="wishlist.html" class="hover-label add_to_wishlist"><i
-                                    class="icon ion-heart"></i><span>Add to Wishlist</span></a>
-                        </div>
-                        <p class="prod-li-compare">
-                            <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i
-                                    class="icon ion-arrow-swap"></i></a>
-                        </p>
+                        <p class="prod-rating-count">7</p>
                     </div>
-                </div>
-                <div class="prod-props">
-                    <dl class="product_meta">
-                        <dt>SKU:</dt>
-                        <dd>2135687</dd>
-                        <dt>Marca</dt>
-                        <dd><a href="#">Encantos finos</a></dd>
-                        <dt>Peso</dt>
-                        <dd>1 kg</dd>
-                        <dt>Dimensions</dt>
-                        <dd>4 x 50 cm</dd>
-                        <dt>Fabricante</dt>
-                        <dd>Perú</dd>
-                        <dt>Material</dt>
-                        <dd>Oro</dd>
-                    </dl>
-                </div>
+                    <p class="prod-categs"><a href="#">{{producto.categoria.nombre}}</a>, <a
+                            href="#">{{producto.marca.nombre}}</a></p>
+                    <h1>{{producto.nombre}}</h1>
+                    <div class="variations_form cart">
+                        <p class="prod-price">${{producto.precio}}</p>
+                        <div class="prod-add">
+                            <button type="submit" class="button"><i class="icon ion-android-cart"></i> Agregar al
+                                carrito</button>
+                            <p class="qnt-wrap prod-li-qnt">
+                                <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
+                                <input type="text" name="cantidad" value="1">
+                                <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                            </p>
+                            <div class="prod-li-favorites">
+                                <a href="wishlist.html" class="hover-label add_to_wishlist"><i
+                                        class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                            </div>
+                            <p class="prod-li-compare">
+                                <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i
+                                        class="icon ion-arrow-swap"></i></a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="prod-props">
+                        <dl class="product_meta">
+                            <dt>SKU:</dt>
+                            <dd>2135687</dd>
+                            <dt>Marca</dt>
+                            <dd><a href="#">Encantos finos</a></dd>
+                            <dt>Peso</dt>
+                            <dd>1 kg</dd>
+                            <dt>Dimensions</dt>
+                            <dd>4 x 50 cm</dd>
+                            <dt>Fabricante</dt>
+                            <dd>Perú</dd>
+                            <dt>Material</dt>
+                            <dd>Oro</dd>
+                        </dl>
+                    </div>
+                </form>
             </div>
+
             <p class="prod-badge">
                 <span class="badge-1">TOP SELLER</span>
             </p>
