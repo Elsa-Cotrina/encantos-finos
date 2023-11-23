@@ -51,9 +51,6 @@
                 <h1>{{producto.nombre}}</h1>
                 <div class="variations_form cart">
                     <p class="prod-price">${{producto.precio}}</p>
-                    <p>
-                        {{producto.descripcion}}
-                    </p>
                     <div class="prod-add">
                         <button type="submit" class="button"><i class="icon ion-android-cart"></i> Agregar al carrito</button>
                         <p class="qnt-wrap prod-li-qnt">
@@ -104,9 +101,9 @@
             <div class="prod-tab-cont">
                 <p data-prodtab-num="1" class="prod-tab-mob active" data-prodtab="#prod-tab-1">Description</p>
                 <div class="prod-tab page-styling prod-tab-desc" id="prod-tab-1">
-                    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                        Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
-                        sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                    <p>
+                        {{producto.descripcion}}
+                    </p>
                 </div>
                 <p data-prodtab-num="2" class="prod-tab-mob" data-prodtab="#prod-tab-2">Additional information</p>
                 <div class="prod-tab" id="prod-tab-2">

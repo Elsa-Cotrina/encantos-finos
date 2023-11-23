@@ -4538,9 +4538,11 @@ span.badge-1 {
 	color: #fff;
 	font-weight: 400;
 }
+
 .prod-litems .prod-li-cont {
+	display: flex;
 	padding: 10px 0 10px;
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 .prod-litems .prod-li-ttl-wrap {
 	display: inline-block;
