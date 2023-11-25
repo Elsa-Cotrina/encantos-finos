@@ -107,26 +107,42 @@ from .models import Cliente
 from django.shortcuts import redirect
 
 def crear_usuario(request):
+    pagina_destino = request.GET.get('next',None)
+    context = {
+        'destino' : pagina_destino
+    }
     if request.method == 'POST':
         data_usuario = request.POST['usuario']
         data_password = request.POST['password']
+        data_destino = request.POST['destino']
 
         usuario = User.objects.create_user(username= data_usuario,password=data_password)
         if usuario is not None:
             login(request,usuario)
+            if data_destino != 'None' :
+                return redirect(data_destino)
+
             return redirect('/cuenta')
 
     return render(request,'login.html')
 
 def login_usuario(request):
-    context = {}
+    pagina_destino = request.GET.get('next',None)
+    context = {
+        'destino' : pagina_destino
+    }
     if request.method == 'POST':
         data_usuario = request.POST['usuario']
         data_password = request.POST['password']
+        data_destino = request.POST['destino']
+
 
         usuario = authenticate(request,username=data_usuario,password=data_password)
         if usuario is not None:
             login(request,usuario)
+            if data_destino != 'None' :
+                return redirect(data_destino)
+
             return redirect('/cuenta')
         else:
             context = {
@@ -200,3 +216,72 @@ def actualizar_cliente(request):
         'mensaje':mensaje_confirmacion
     }
     return render(request,'cuenta.html',context)
+
+@login_required(login_url='/login')
+def confirmar_factura(request):
+    try:
+        cliente = Cliente.objects.get(usuario=request.user)
+
+        data_cliente = {
+            'nombre':request.user.first_name,
+            'apellidos':request.user.last_name,
+            'email':request.user.email,
+            'direccion':cliente.direccion,
+            'telefono':cliente.telefono,
+            'dni':cliente.dni,
+            'fecha_nacimiento':cliente.fecha_nacimiento
+        }
+    except:
+        data_cliente = {
+            'nombre':request.user.first_name,
+            'apellidos':request.user.last_name,
+            'email':request.user.email
+        }
+    form = ClienteForm(data_cliente)
+    context = {
+        'form' : form
+    }
+    return render(request,'factura.html',context)
+
+from .models import Factura
+
+@login_required(login_url='/login')
+def registrar_pedido(request):
+    context = {}
+    if request.method == 'POST':
+        #gestion del usuario y cliente
+        frm_cliente = ClienteForm(request.POST)
+        print(frm_cliente)
+        data_cliente = frm_cliente.cleaned_data
+
+        # actualizar usuario
+        usuario = User.objects.get(pk=request.user.id)
+        usuario.first_name = data_cliente['nombre']
+        usuario.last_name = data_cliente['apellidos']
+        usuario.email = data_cliente['email']
+        usuario.save()
+        try:
+            cliente = Cliente.objects.get(usuario=usuario)
+            cliente.telefono = data_cliente['telefono']
+            cliente.direccion = data_cliente['direccion']
+            cliente.save()
+        except:
+            cliente = Cliente()
+            cliente.usuario = usuario
+            cliente.direccion = data_cliente['direccion']
+            cliente.telefono = data_cliente['telefono']
+            cliente.save()
+            
+        pedido = Factura()
+        pedido.cliente = cliente
+        pedido.direccion_envio = data_cliente['direccion']
+
+        pedido.save()
+        print('hasta aqui llego *******************************************************************')
+
+        context = {
+            'pedido' : pedido
+        }
+
+        print('hasta aqui llego *******************************************************************')
+    return render(request,'pago.html',context)

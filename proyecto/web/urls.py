@@ -18,5 +18,7 @@ urlpatterns = [
     path('cuenta', views.cuenta_usuario,name='cuenta'),
     path('login',views.login_usuario,name='usuariologin'),
     path('logout',views.logout_usuario,name='usuariologout'),
-    path('cliente/update',views.actualizar_cliente,name='clienteupdate')
+    path('cliente/update',views.actualizar_cliente,name='clienteupdate'),
+    path('factura',views.confirmar_factura,name='factura'),
+    path('registrarpedido',views.registrar_pedido,name='registrarpedido'),
 ]
