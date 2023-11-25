@@ -135,7 +135,7 @@ def login_usuario(request):
         data_usuario = request.POST['usuario']
         data_password = request.POST['password']
         data_destino = request.POST['destino']
-
+        print(data_destino)
 
         usuario = authenticate(request,username=data_usuario,password=data_password)
         if usuario is not None:
@@ -146,7 +146,8 @@ def login_usuario(request):
             return redirect('/cuenta')
         else:
             context = {
-                'mensaje_error' : 'Intentalo de nuevo'
+                'mensaje_error' : 'Intentalo de nuevo',
+                'destino' : data_destino
             }
     return render(request,'login.html',context)
 
@@ -188,14 +189,13 @@ def actualizar_cliente(request):
     mensaje_confirmacion = " "
     frm_cliente = ClienteForm(request.POST)
     if frm_cliente.is_valid():
-        data_cliente = frm_cliente.cleaned_data
         # actualizar usuario
+        data_cliente = frm_cliente.cleaned_data
         usuario = User.objects.get(pk=request.user.id)
         usuario.first_name = data_cliente['nombre']
         usuario.last_name = data_cliente['apellidos']
         usuario.email = data_cliente['email']
         usuario.save()
-
         #actualizar o registrar cliente
         try:
             cliente = Cliente.objects.get(usuario=usuario)
@@ -244,17 +244,15 @@ def confirmar_factura(request):
     return render(request,'factura.html',context)
 
 from .models import Factura
+from .models import FacturaDetalle
 
 @login_required(login_url='/login')
 def registrar_pedido(request):
     context = {}
     if request.method == 'POST':
+        print('metodo')
         #gestion del usuario y cliente
-        frm_cliente = ClienteForm(request.POST)
-        print(frm_cliente)
-        data_cliente = frm_cliente.cleaned_data
-
-        # actualizar usuario
+        data_cliente = request.POST
         usuario = User.objects.get(pk=request.user.id)
         usuario.first_name = data_cliente['nombre']
         usuario.last_name = data_cliente['apellidos']
@@ -275,13 +273,30 @@ def registrar_pedido(request):
         pedido = Factura()
         pedido.cliente = cliente
         pedido.direccion_envio = data_cliente['direccion']
-
         pedido.save()
-        print('hasta aqui llego *******************************************************************')
+
+        #registrar pedido detalle
+        carrito = Cart(request)
+        for key,value in carrito.cart.items():
+            producto = Producto.objects.get(pk=value['producto_id'])
+            pedido_detalle = FacturaDetalle()
+            pedido_detalle.factura = pedido
+            pedido_detalle.producto = producto
+            pedido_detalle.cantidad = int(value['cantidad'])
+            pedido_detalle.precio = float(value['precio'])
+            pedido_detalle.subtotal = float(value['subtotal'])
+            pedido_detalle.save()
+
+        #limpiamos el carrito 
+        carrito.clear()
+        
+        nro_pedido = 'PED' +  str(pedido.id)
+        pedido.nro_pedido = nro_pedido
+        pedido.monto_total = carrito.total
+        pedido.save()
 
         context = {
             'pedido' : pedido
         }
 
-        print('hasta aqui llego *******************************************************************')
     return render(request,'pago.html',context)

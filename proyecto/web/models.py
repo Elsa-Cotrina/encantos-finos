@@ -53,7 +53,7 @@ class Cliente(models.Model):
         return self.dni   
 
 class Factura(models.Model):
-    ESTADO_CHAOICES = {
+    ESTADO_CHOICES = {
         ('$' , 'SOLICITADO'),
         ('p' , 'PAGADO')
     }
@@ -61,7 +61,7 @@ class Factura(models.Model):
     fecha_registro = models.DateTimeField(auto_now_add=True)
     monto_total = models.DecimalField(max_digits=5,decimal_places=2,default=0)
     direccion_envio = models.TextField(null=True) 
-    estado = models.CharField(max_length=1,default='5',choices=ESTADO_CHAOICES)
+    estado = models.CharField(max_length=1,default='5',choices=ESTADO_CHOICES)
     nro_pedido = models.CharField(max_length=20,null=True)
     
     class Meta:
@@ -70,7 +70,7 @@ class Factura(models.Model):
     def __str__(self):
         return self.nro_factura
 
-class Facturadetalle(models.Model):
+class FacturaDetalle(models.Model):
     factura = models.ForeignKey(Factura,on_delete=models.RESTRICT)
     producto = models.ForeignKey(Producto,on_delete=models.RESTRICT)
     cantidad = models.IntegerField(default=1)

@@ -62,7 +62,7 @@
                 <a href="{% url 'web:factura' %}" class="checkout-button button">Registar pedido</a>
                 <div class="order-total">
                     <p class="cart-totals-ttl">Total</p>
-                    <p class="cart-totals-val">$510.00</p>
+                    <p class="cart-totals-val">{{request.session.total}}</p>
                 </div>
             </div>
         </div>
