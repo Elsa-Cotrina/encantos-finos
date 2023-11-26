@@ -12,8 +12,8 @@
                     <p>Cliente : {{pedido.cliente.usuario.first_name}} {{pedido.cliente.usuario.last_name}}</p>
                 </div>
                 <div class="auth-col">
-                    <h2>Proceder con el pago</h2>
                     <p>Monto total a pagar : ${{pedido.monto_total}}</p>
+                    {{paypal_form.render}}
                 </div>
             </div>
         </div>

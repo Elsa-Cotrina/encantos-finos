@@ -245,6 +245,8 @@ def confirmar_factura(request):
 
 from .models import Factura
 from .models import FacturaDetalle
+from paypal.standard.forms import PayPalPaymentsForm
+from django.urls import reverse
 
 @login_required(login_url='/login')
 def registrar_pedido(request):
@@ -295,8 +297,34 @@ def registrar_pedido(request):
         pedido.monto_total = carrito.total
         pedido.save()
 
-        context = {
-            'pedido' : pedido
-        }
+#configuramos formulario paypal
+        paypal_dict = {
+        "business": "sb-6va47l27985629@business.example.com",
+        "amount": pedido.monto_total,
+        "item_name": "pedido tienda online",
+        "invoice": pedido.nro_pedido,
+        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "return": request.build_absolute_uri('/pedidopagado'),
+        "cancel_return": request.build_absolute_uri('/')
+    }
+    # Create the instance.
+    paypal_form = PayPalPaymentsForm(initial=paypal_dict)
+    request.session['pedido_id'] = pedido.id
+
+    context = {
+        'pedido' : pedido,
+        'paypal_form' : paypal_form
+    }
 
     return render(request,'pago.html',context)
+
+@login_required(login_url='/login')
+def pedido_pagado(request):
+    context = {}
+    pedido = Factura.objects.get(pk=request.session.get('pedido_id'))
+    pedido.estado = 'P'
+    pedido.save()
+    context = {
+        'pedido':pedido
+    }
+    return render(request, 'pedidopagado.html',context)

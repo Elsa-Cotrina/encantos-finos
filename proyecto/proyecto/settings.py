@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +139,5 @@ cloudinary.config(
   api_key = "636214487824196", 
   api_secret = "I9m0c8yWct-Sa1CHKhOgwmvg4cs" 
 )
+
+PAYPAL_TEST = True
