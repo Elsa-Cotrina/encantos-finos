@@ -4,6 +4,15 @@ from .models import Categoria,Marca,Producto
 
 # Create your views here.
 def index(request):
+    lista_productos = Producto.objects.all()
+
+    context = {
+        'productos' : lista_productos
+    }
+    return render(request,'index.html',context)
+
+
+def shop(request):
     lista_categorias = Categoria.objects.all()
     lista_marcas = Marca.objects.all()
     lista_productos = Producto.objects.all()
@@ -13,7 +22,7 @@ def index(request):
         'marcas' : lista_marcas,
         'productos' : lista_productos
     }
-    return render(request,'index.html',context)
+    return render(request,'shop.html',context)
 
 def productos_por_categoria(request,categoria_id):
     """Vistas para filtrar productos por categoria"""
@@ -27,7 +36,7 @@ def productos_por_categoria(request,categoria_id):
         'marcas' : lista_marcas,
         'productos' : lista_productos
     }
-    return render(request, 'index.html', context)
+    return render(request, 'shop.html', context)
 
 def productos_por_marca(request,marca_id):
     """ vista para filtrar productos por marcas """
