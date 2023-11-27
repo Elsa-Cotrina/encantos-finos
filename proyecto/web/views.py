@@ -135,7 +135,7 @@ def login_usuario(request):
         data_usuario = request.POST['usuario']
         data_password = request.POST['password']
         data_destino = request.POST['destino']
-        print(data_destino)
+        #print(data_destino)
 
         usuario = authenticate(request,username=data_usuario,password=data_password)
         if usuario is not None:
@@ -252,7 +252,7 @@ from django.urls import reverse
 def registrar_pedido(request):
     context = {}
     if request.method == 'POST':
-        print('metodo')
+        #print('metodo')
         #gestion del usuario y cliente
         data_cliente = request.POST
         usuario = User.objects.get(pk=request.user.id)

@@ -68,7 +68,7 @@ class Factura(models.Model):
         db_table = 'tbl_factura'
     
     def __str__(self):
-        return self.nro_factura
+        return self.nro_pedido
 
 class FacturaDetalle(models.Model):
     factura = models.ForeignKey(Factura,on_delete=models.RESTRICT)
