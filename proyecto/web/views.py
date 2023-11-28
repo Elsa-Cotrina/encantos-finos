@@ -11,6 +11,11 @@ def index(request):
     }
     return render(request,'index.html',context)
 
+def contactanos(request):
+    return render(request,'contactanos.html')
+
+def sobre_nosotros(request):
+    return render(request,'about.html')
 
 def shop(request):
     lista_categorias = Categoria.objects.all()

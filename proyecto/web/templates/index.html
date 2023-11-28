@@ -2,175 +2,191 @@
 {% block content %}
 {% load static %}
 <body>
-<div id="page" class="site">
+    <div id="page" class="site">
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area width-full">
+                <main id="main" class="site-main">
+                    <div class="maincont page-styling page-full">
+                        <div class="heroblock" style="background-image: url('../static/img/slider.jpg')">
+                            <img src="#" alt="">
+                            <p class="heroblock-subttl"><a href="catalog-gallery.html">Tienda</a></p>
+                            <h3 class="heroblock-ttl">Envío gratis a cualquier lugar</h3>
+                            <a href="catalog-gallery.html" class="btn">Leer más</a>
+                        </div>
 
-    <div id="content" class="site-content"><div id="primary" class="content-area width-full">
-        <main id="main" class="site-main">
-            <div class="maincont page-styling page-full" >
-                <div class="heroblock" style="background-image: url('../static/img/slider.jpg')">
-                    <img src="#" alt="">
-                    <p class="heroblock-subttl"><a href="catalog-gallery.html">Store</a></p>
-                    <h3 class="heroblock-ttl">Free Shipping Anywhere</h3>
-                    <a href="catalog-gallery.html" class="btn">Read More</a>
-                </div>
 
-
-                <div class="container mb60 page-styling row-wrap-container row-wrap-nottl">
-                    <h2 class="mb35 heading-multishop">Our Products</h2>
-                    <div class="row prod-items prod-items-3">
-                        {% for producto in productos %}
-                        <article class="cf-sm-6 cf-md-4 cf-lg-4 col-xs-6 col-sm-6 col-md-4 col-lg-4 sectgl-item">
-                            <div class="sectgl prod-i">
-                                <div class="prod-i-top">
-                                    <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
-                                        <img src="{{producto.imagen.url}}" alt="">
-                                    </a>
-                                </div>
-                                <div class="prod-i-bot">
-                                    <div class="prod-i-info">
-                                        <p class="prod-i-price">${{producto.precio}}</p>
-                                        <p class="prod-i-categ"><a href="catalog-gallery.html">{{producto.marca.nombre}}</a></p>
+                        <div class="container mb60 page-styling row-wrap-container row-wrap-nottl">
+                            <h2 class="mb35 heading-multishop">Nuestros Productos</h2>
+                            <div class="row prod-items prod-items-3">
+                                {% for producto in productos %}
+                                <article
+                                    class="cf-sm-6 cf-md-4 cf-lg-4 col-xs-6 col-sm-6 col-md-4 col-lg-4 sectgl-item">
+                                    <div class="sectgl prod-i">
+                                        <div class="prod-i-top">
+                                            <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
+                                                <img src="{{producto.imagen.url}}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="prod-i-bot">
+                                            <div class="prod-i-info">
+                                                <p class="prod-i-price">${{producto.precio}}</p>
+                                                <p class="prod-i-categ"><a
+                                                        href="catalog-gallery.html">{{producto.marca.nombre}}</a></p>
+                                            </div>
+                                            <h3 class="prod-i-ttl"><a
+                                                    href="{% url 'web:producto' producto.id %}">{{producto.nombre}}</a>
+                                            </h3>
+                                        </div>
                                     </div>
-                                    <h3 class="prod-i-ttl"><a href="{% url 'web:producto' producto.id %}">{{producto.nombre}}</a></h3>
-                                </div>
+                                </article>
+                                {% endfor %}
                             </div>
-                        </article>  
-                        {% endfor %}                         
-                    </div>
-                    <p class="special-more">
-                        <a class="special-more-btn" href="#">Show More Products</a>
-                    </p>
-                </div>
-                <div class="page-styling row-wrap-full front-image-half">
-                    <section class="image-half image-half-right">
-                        <div class="image-half-img" style="background-image: url(http://placehold.it/1006x498);">
-                            <img src="http://placehold.it/1006x498" alt="">
+                            <p class="special-more">
+                                <a class="special-more-btn" href="#">Show More Products</a>
+                            </p>
                         </div>
-                        <div class="cont image-half-cont">
-                            <div class="image-half-inner">
-                                <p class="maincont-subttl">Best sellers</p>
-                                <h2>Best MultiShop Offers</h2>
-                                <div class="wpb_text_column wpb_content_element ">
-                                    <div class="wpb_wrapper">
-                                        <p>Phasellus rhoncus, dolor ac venenatis cursus, lacus tellus gravida ipsum, at maximus est diam ut tellus. Nunc ut risus sem.</p>
+                        <div class="page-styling row-wrap-full front-image-half">
+                            <section class="image-half image-half-right">
+                                <div class="image-half-img"
+                                    style="background-image: url(../static/img/calidad.jpg);">
+                                    <img src="http://placehold.it/1006x498" alt="">
+                                </div>
+                                <div class="cont image-half-cont">
+                                    <div class="image-half-inner">
+                                        <h2>Calidad</h2>
+                                        <div class="wpb_text_column wpb_content_element ">
+                                            <div class="wpb_wrapper">
+                                                <p>
+                                                    Antes de que una pieza de joyería pueda llevar el nombre de Encanto
+                                                    Finos debe pasar una rigurosa serie de inspecciones. Usted
+                                                    tiene altos estándares, por lo que los nuestros son aún más altos.
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </section>
                         </div>
-                    </section>
-                </div>
-
-
-                <div class="page-styling row-wrap-full front-image-half">
-                    <section class="image-half image-half-left">
-                        <div class="image-half-img" style="background-image: url(http://placehold.it/1006x498);">
-                            <img src="http://placehold.it/1006x498" alt="">
+                        <div class="page-styling row-wrap-full front-image-half">
+                            <section class="image-half image-half-left">
+                                <div class="image-half-img"
+                                    style="background-image: url(../static/img/arte.png);">
+                                    <img src="http://placehold.it/1006x498" alt="">
+                                </div>
+                                <div class="cont image-half-cont">
+                                    <div class="image-half-inner">
+                                        <h2>ARTE</h2>
+                                        <p>
+                                            Fabricamos todo tipo de joyas de oro personalizados según estándares de
+                                            calidad exigentes y un gemólogo experto inspecciona todas las joyas de
+                                            diamantes antes de que lleguen a usted.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                        <div class="cont image-half-cont">
-                            <div class="image-half-inner">
-                                <h2>Jewelry for women, men, boys and girls</h2>
-                                <form action="#" method="post" class="mb55 wpcf7 wpcf7-form">
-                                    <p class="form-submit">
-                        <span class="wpcf7-form-control-wrap">
-                            <input type="email" placeholder="E-mail address">
-                        </span>
-                                        <input type="submit" value="Get a Free Bonus">
-                                    </p>
-                                </form>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-            </div><!-- .maincont.page-styling.page-full -->
-        </main><!-- #main -->
-    </div><!-- #primary -->    </div><!-- #content -->
-
-    <div class="form-validate modal-form" id="modal-form">
-        <form action="#" method="POST" class="form-validate">
-            <h4>Contact Us</h4>
-            <input type="text" placeholder="Your name" data-required="text" name="name">
-            <input type="text" placeholder="Your phone" data-required="text" name="phone">
-            <input type="text" placeholder="Your email" data-required="text" data-required-email="email" name="email">
-            <input class="btn1" type="submit" value="Send">
-        </form>
-    </div>
-
-    <div class="cont maincont quick-view-modal">
-        <article>
-            <div class="prod">
-                <div class="prod-slider-wrap prod-slider-shown">
-                    <div class="flexslider prod-slider" id="prod-slider">
-                        <ul class="slides">
-                            <li>
-                                <a data-fancybox-group="prod" class="fancy-img" href="http://placehold.it/1000x1000">
-                                    <img src="http://placehold.it/550x550" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a data-fancybox-group="prod" class="fancy-img" href="http://placehold.it/1000x1000">
-                                    <img src="http://placehold.it/550x550" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                <a data-fancybox-group="prod" class="fancy-img" href="http://placehold.it/1000x1000">
-                                    <img  src="http://placehold.it/550x550" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="prod-slider-count"><p><span class="count-cur">1</span> / <span class="count-all">3</span></p><p class="hover-label prod-slider-zoom"><i class="icon ion-search"></i><span>Zoom In</span></p></div>
                     </div>
-                    <div class="flexslider prod-thumbs" id="prod-thumbs">
-                        <ul class="slides">
-                            <li>
-                                <img src="http://placehold.it/550x550" alt="">
-                            </li>
-                            <li>
-                                <img src="http://placehold.it/550x550" alt="">
-                            </li>
-                            <li>
-                                <img src="http://placehold.it/550x550" alt="">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="prod-cont">
-                    <div class="prod-rating-wrap">
-                        <p data-rating="4" class="prod-rating">
-                            <i class="rating-ico" title="1"></i><i class="rating-ico" title="2"></i><i class="rating-ico" title="3"></i><i class="rating-ico" title="4"></i><i class="rating-ico" title="5"></i>
-                        </p>
-                        <p class="prod-rating-count">7</p>
-                    </div>
-                    <p class="prod-categs"><a href="#">Lighting</a>, <a href="#">Tools</a></p>
-                    <h2>Belt Sanders</h2>
-                    <p class="prod-price">$25.00</p>
-                    <p class="stock in-stock">7 in stock</p>
-                    <p class="prod-excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget...</p>
-                    <div class="prod-add">
-                        <button type="submit"
-                                class="button"><i class="icon ion-android-cart"></i> Add to cart
-                        </button>
-                        <p class="qnt-wrap prod-li-qnt">
-                            <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
-                            <input type="text" value="1">
-                            <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
-                        </p>
-                        <div class="prod-li-favorites">
-                            <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
-                        </div>
-                        <p class="prod-li-compare">
-                            <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
-                        </p>
-                    </div>
-                </div>
+                </main>
             </div>
-        </article>
-    </div>
-</div><!-- #page -->
+        </div>
 
-<script src="js/jquery-1.12.4.min.js"></script>
-<script src="js/jquery-plugins.js"></script>
-<script src="js/main.js"></script>
+        <div class="form-validate modal-form" id="modal-form">
+            <form action="#" method="POST" class="form-validate">
+                <h4>Contact Us</h4>
+                <input type="text" placeholder="Your name" data-required="text" name="name">
+                <input type="text" placeholder="Your phone" data-required="text" name="phone">
+                <input type="text" placeholder="Your email" data-required="text" data-required-email="email"
+                    name="email">
+                <input class="btn1" type="submit" value="Send">
+            </form>
+        </div>
+
+        <div class="cont maincont quick-view-modal">
+            <article>
+                <div class="prod">
+                    <div class="prod-slider-wrap prod-slider-shown">
+                        <div class="flexslider prod-slider" id="prod-slider">
+                            <ul class="slides">
+                                <li>
+                                    <a data-fancybox-group="prod" class="fancy-img"
+                                        href="http://placehold.it/1000x1000">
+                                        <img src="http://placehold.it/550x550" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-fancybox-group="prod" class="fancy-img"
+                                        href="http://placehold.it/1000x1000">
+                                        <img src="http://placehold.it/550x550" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-fancybox-group="prod" class="fancy-img"
+                                        href="http://placehold.it/1000x1000">
+                                        <img src="http://placehold.it/550x550" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="prod-slider-count">
+                                <p><span class="count-cur">1</span> / <span class="count-all">3</span></p>
+                                <p class="hover-label prod-slider-zoom"><i class="icon ion-search"></i><span>Zoom
+                                        In</span></p>
+                            </div>
+                        </div>
+                        <div class="flexslider prod-thumbs" id="prod-thumbs">
+                            <ul class="slides">
+                                <li>
+                                    <img src="http://placehold.it/550x550" alt="">
+                                </li>
+                                <li>
+                                    <img src="http://placehold.it/550x550" alt="">
+                                </li>
+                                <li>
+                                    <img src="http://placehold.it/550x550" alt="">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="prod-cont">
+                        <div class="prod-rating-wrap">
+                            <p data-rating="4" class="prod-rating">
+                                <i class="rating-ico" title="1"></i><i class="rating-ico" title="2"></i><i
+                                    class="rating-ico" title="3"></i><i class="rating-ico" title="4"></i><i
+                                    class="rating-ico" title="5"></i>
+                            </p>
+                            <p class="prod-rating-count">7</p>
+                        </div>
+                        <p class="prod-categs"><a href="#">Lighting</a>, <a href="#">Tools</a></p>
+                        <h2>Belt Sanders</h2>
+                        <p class="prod-price">$25.00</p>
+                        <p class="stock in-stock">7 in stock</p>
+                        <p class="prod-excerpt">Pellentesque habitant morbi tristique senectus et netus et malesuada
+                            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget...</p>
+                        <div class="prod-add">
+                            <button type="submit" class="button"><i class="icon ion-android-cart"></i> Add to cart
+                            </button>
+                            <p class="qnt-wrap prod-li-qnt">
+                                <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
+                                <input type="text" value="1">
+                                <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                            </p>
+                            <div class="prod-li-favorites">
+                                <a href="wishlist.html" class="hover-label add_to_wishlist"><i
+                                        class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                            </div>
+                            <p class="prod-li-compare">
+                                <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i
+                                        class="icon ion-arrow-swap"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div><!-- #page -->
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery-plugins.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 {% endblock %}

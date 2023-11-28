@@ -50,19 +50,16 @@ No Space
     <nav id="h-menu" class="h-menu">
         <ul>
             <li class="menu-item-has-children">
-                <a href="index.html">Home</a>
+                <a href="{% url 'web:index' %}">Home</a>
             </li>
             <li class="menu-item-has-children active">
                 <a href="{% url 'web:shop' %}">Shop</a>
             </li>
             <li>
-                <a href="elements.html">Contact Us</a>
+                <a href="{% url 'web:contactanos' %}">Contact Us</a>
             </li>
             <li class="menu-item-has-children">
-                <a href="blog.html">About us</a>
-            </li>
-            <li class="menu-item-has-children">
-                <a href="about.html">Location</a>
+                <a href="{% url 'web:about' %}">About us</a>
             </li>
         </ul>
     </nav>
