@@ -25,4 +25,6 @@ urlpatterns = [
     path('pedidopagado', views.pedido_pagado,name='pedidopagado'),
     path('contactanos', views.contactanos,name='contactanos'),
     path('about', views.sobre_nosotros,name='about'),
+    path('galeria', views.mi_galeria,name='galeria'),
+    path('senddata',views.correo,name='senddata')
 ]

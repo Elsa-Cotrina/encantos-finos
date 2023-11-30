@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+<main id="main" class="site-main">
+    <div class="cont">
+        <h1 class="maincont-ttl">Mi Galeria</h1>
+    </div>
+    <div class="row prod-items prod-items-2">
+        {% for producto in productos %}
+        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+            <div class="sectgl prod-i">
+                <div class="prod-i-top">
+                    <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
+                        <img src="{{producto.imagen.url}}" alt="">
+                    </a>
+                </div>
+            </div>
+        </article>
+        {% endfor %}        
+    </div>
+</main>
+{% endblock %}

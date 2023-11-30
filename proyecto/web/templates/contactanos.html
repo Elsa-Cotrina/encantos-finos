@@ -40,15 +40,19 @@
                         <div class="vc_column-inner ">
                             <div class="wpb_wrapper">
                                 <h3 class="mb20">Contáctanos</h3>
-                                <form action="#" method="post" class="form-validate wpcf7 wpcf7-form">
-                                    <p class="wpcf7-form-control-wrap"><input type="text" data-required="text"
-                                            placeholder="Name"></p>
+                                <form action="{% url 'web:senddata' %}" method="post" class="">
+                                    {% csrf_token %}
+                                    <p class="wpcf7-form-control-wrap"><input type="text" name="nombre"
+                                            data-required="text" placeholder="Name"></p>
                                     <p class="wpcf7-form-control-wrap"><input type="email" data-required-email="email"
-                                            data-required="text" placeholder="E-mail address"></p>
-                                    <p class="wpcf7-form-control-wrap"><input type="text" data-required="text"
-                                            placeholder="Phone number"></p>
-                                    <p><input type="submit" value="Send"></p>
+                                            data-required="text" name="email" placeholder="E-mail address"></p>
+                                    <p class="wpcf7-form-control-wrap"><textarea placeholder="Your Message"
+                                            class="form-control" name="contenido" rows="10" required></textarea></p>
+                                    <p>
+                                        <input type="submit" value="Send">
+                                    </p>
                                 </form>
+
                             </div>
                         </div>
                     </div>
@@ -57,8 +61,9 @@
         </div>
         <div class="page-styling row-wrap-full contacts-page-map" style="margin-top: 20px;">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6304.829986131271!2d-122.4746968033092!3d37.80374752160443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808586e6302615a1%3A0x86bd130251757c00!2sStorey+Ave%2C+San+Francisco%2C+CA+94129!5e0!3m2!1sen!2sus!4v1435826432051"
-                width="100%" height="450" allowfullscreen></iframe>
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15310.501535869078!2d-71.53678579999999!3d-16.39303485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424a44bd6cfa61%3A0xd753b23611dea7e0!2sMirador%20de%20Yanahuara!5e0!3m2!1ses-419!2spe!4v1701191772658!5m2!1ses-419!2spe"
+                width="100%" height="450" allowfullscreen>
+            </iframe>
         </div>
     </div>
 </main>
