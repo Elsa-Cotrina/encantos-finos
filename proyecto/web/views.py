@@ -261,6 +261,8 @@ def actualizar_cliente(request):
         cliente.save()
         mensaje_confirmacion = 'Datos actualizados'
 
+        frm_cliente = ClienteForm()
+        
     context = {
         'form': frm_cliente,
         'mensaje': mensaje_confirmacion

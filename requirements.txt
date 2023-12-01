@@ -1,6 +1,5 @@
 django==3.2
 mysqlclient
-djangorestframework
 django-cors-headers
 Pillow
 cloudinary
