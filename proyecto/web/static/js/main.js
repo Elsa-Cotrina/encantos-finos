@@ -1,6 +1,5 @@
 "use strict";
 
-
 // Compare List
 function multishop_set_draggable(el_compares) {
 	var html = jQuery('html'),

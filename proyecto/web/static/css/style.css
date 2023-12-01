@@ -2281,13 +2281,16 @@ body .widget_search .dgwt-wcas-si img {
 	position: relative;
 	margin-top: -25px;
 	margin-bottom: 50px;
-	padding-top: 120px;
-	padding-bottom: 170px;
+	/* padding-top: 120px; */
+	/* padding-bottom: 170px; */
 	text-align: center;
+	width: full;
 	background-repeat: no-repeat;
 	background-position: center center;
 	-webkit-background-size: cover;
 	background-size: cover;
+	box-shadow: 0 0 2px 9px rgba(0.9, 0, 0, 0);
+	background: linear-gradient(#0000, #0b0709);
 }
 .heroblock:before {
 	position: absolute;
@@ -2295,12 +2298,12 @@ body .widget_search .dgwt-wcas-si img {
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background-color: rgba(0,0,0,0.15);
+	background-color: rgba(30, 29, 29, 0.15);
 	content: '';
 	display: block;
 }
 .heroblock .heroblock-subttl {
-	font-size: 20px;
+	font-size: 25px;
 	line-height: 1.2;
 	font-weight: 400;
 	color: #fff;
@@ -2316,19 +2319,20 @@ body .widget_search .dgwt-wcas-si img {
 	color: #ffffff;
 	transition: all 0.2s;
 	border: none;
+	margin-top: -20px;
 }
 .heroblock .heroblock-subttl a:hover {
 	color: #996a49;
 	color: #fff;
 }
 .heroblock .heroblock-ttl {
-	font-size: 70px;
+	font-size: 30px;
 	line-height: 1.2;
 	font-weight: 700;
 	color: #fff;
 	letter-spacing: 3px;
 	font-family: Montserrat;
-	margin: 0 0 60px;
+	margin: 37px 0 37px;
 	padding: 0;
 	position: relative;
 	z-index: 1;
@@ -2339,7 +2343,7 @@ body .widget_search .dgwt-wcas-si img {
 	color: #fff;
 	letter-spacing: 2px;
 	border: 1px solid #fff;
-	margin: 0 0 20px;
+	margin: -30px 0 15px;
 	padding: 14px 30px;
 	border-radius: 0;
 	background-color: transparent;
@@ -11703,7 +11707,7 @@ Compare List
 	margin-bottom: -50px;
 	margin-top: 20px;
 	width: 100%;
-	height: 450px;
+	max-height: 480px;
 	justify-content: center;
 	align-items: center;
 }

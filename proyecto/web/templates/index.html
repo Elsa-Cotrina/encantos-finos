@@ -6,12 +6,20 @@
         <div id="primary" class="content-area width-full">
             <main id="main" class="site-main">
                 <div class="maincont page-styling page-full">
-                    <div class="heroblock" style="background-image: url('../static/img/slider.jpg')">
-                        <img src="#" alt="">
+
+                    <div class="heroblock">
+                        <div class="page-styling row-wrap-full contacts-page-map" style="margin-top: 20px;">
+                            <video autoplay muted loop width="100%" allowfullscreen>
+                                <source
+                                src="https://www.dropbox.com/scl/fi/s8ca3cdrs77y5n856x7px/joyeria.mp4?rlkey=uhfs5b6favjb6sp53qxd8ulk1&dl=1"
+                                type="video/mp4">
+                            </video>
+                        </div>
                         <p class="heroblock-subttl"><a href="{% url 'web:shop' %}">Tienda</a></p>
                         <h3 class="heroblock-ttl">Envío gratis a cualquier lugar</h3>
                         <a href="{% url 'web:galeria' %}" class="btn">Ver más</a>
                     </div>
+
                     <div class="container mb60 page-styling row-wrap-container row-wrap-nottl">
                         <h2 class="mb35 heading-multishop">Nuestros Productos</h2>
                         <div class="row prod-items prod-items-3">
