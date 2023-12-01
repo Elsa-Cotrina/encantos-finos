@@ -43,13 +43,13 @@
                                 <form action="{% url 'web:senddata' %}" method="post" class="">
                                     {% csrf_token %}
                                     <p class="wpcf7-form-control-wrap"><input type="text" name="nombre"
-                                            data-required="text" placeholder="Name"></p>
+                                            data-required="text" placeholder="Nombre"></p>
                                     <p class="wpcf7-form-control-wrap"><input type="email" data-required-email="email"
-                                            data-required="text" name="email" placeholder="E-mail address"></p>
-                                    <p class="wpcf7-form-control-wrap"><textarea placeholder="Your Message"
+                                            data-required="text" name="email" placeholder="Correo"></p>
+                                    <p class="wpcf7-form-control-wrap"><textarea placeholder="Mensaje"
                                             class="form-control" name="contenido" rows="10" required></textarea></p>
                                     <p>
-                                        <input type="submit" value="Send">
+                                        <input type="submit" value="Enviar">
                                     </p>
                                 </form>
 

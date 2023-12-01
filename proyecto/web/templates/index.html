@@ -87,11 +87,11 @@
     <div class="modal-form" id="modal-form">
         <form action="{% url 'web:senddata' %}" method="POST" class="">
             {% csrf_token %}
-            <h4>Contact Us</h4>
-            <input type="text" placeholder="Your name" data-required="text" name="nombre">
-            <input type="email" placeholder="Your email" data-required="text" data-required-email="email" name="email">
-            <textarea placeholder="Your Message" class="form-control" name="contenido" rows="10" required></textarea>
-            <input class="btn1" type="submit" value="Send" >
+            <h4>Contáctanos</h4>
+            <input type="text" placeholder="Nombre" data-required="text" name="nombre">
+            <input type="email" placeholder="Correo" data-required="text" data-required-email="email" name="email">
+            <textarea placeholder="Mensaje" class="form-control" name="contenido" rows="10" required></textarea>
+            <input class="btn1" type="submit" value="Enviar" >
         </form>
     </div>
     <script>

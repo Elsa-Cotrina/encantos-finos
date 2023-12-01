@@ -9,7 +9,7 @@ No Space
 
     <form method="post" action="{% url 'web:buscar' %}" class="h-search" id="h-search">
         {% csrf_token %}
-        <input type="text" name="nombre" placeholder="Search...">
+        <input type="text" name="nombre" placeholder="Buscar...">
         <button type="submit"><i class="ion-search"></i></button>
     </form>
 
