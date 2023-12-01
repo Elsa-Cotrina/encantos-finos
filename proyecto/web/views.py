@@ -102,8 +102,6 @@ def productos_por_nombre(request):
 
 
 """ esto es para encontrar un solo producto """
-
-
 def producto(request, producto_id):
     obj_producto = Producto.objects.get(pk=producto_id)
     context = {
@@ -145,13 +143,11 @@ def eliminar_carrito(request, producto_id):
 def limpiar_carrito(request):
     carrito = Cart(request)
     carrito.clear()
-
-    return render(request, 'carrito.html')
+    
+    return render(request,'carrito.html')
 
 
 """ VISTAS  PARA CLIENTES """
-
-
 def crear_usuario(request):
     pagina_destino = request.GET.get('next', None)
     context = {
@@ -262,7 +258,7 @@ def actualizar_cliente(request):
         mensaje_confirmacion = 'Datos actualizados'
 
         frm_cliente = ClienteForm()
-        
+
     context = {
         'form': frm_cliente,
         'mensaje': mensaje_confirmacion
@@ -395,7 +391,6 @@ def correo(request):
                              '',
                              ["encantos.finos@gmail.com"],
                              reply_to=[email])
-
         try:
             email.send()
         except Exception as e:

@@ -53,7 +53,7 @@
                 <input type="submit" class="button" value="Apply">
             </div>
             <div class="cart-collaterals">
-                <a href="#" class="checkout-button button">Limpiar carrito</a>
+                <a href="{% url 'web:carritoclear' %}" class="checkout-button button">Limpiar carrito</a>
                 <a href="{% url 'web:factura' %}" class="checkout-button button">Registar pedido</a>
                 <div class="order-total">
                     <p class="cart-totals-ttl">Total</p>
