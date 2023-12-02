@@ -4,67 +4,32 @@
     <div class="cont">
         <h1 class="maincont-ttl">Mi Galeria</h1>
     </div>
-    <div class="row prod-items prod-items-2">
-        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
-            <div class="sectgl prod-i">
-                <div class="prod-i-top">
-                    <a class="prod-i-img" href="{% url 'web:categoria' 2 %}">
-                        <img src="https://i.postimg.cc/R05M5MR9/PULCERA-MU.png" alt="">
-                    </a>
-                    <h2 class="prod-i-ttl">Pulseras</h2>
+    <div class="container mb60 page-styling row-wrap-container row-wrap-nottl">
+        <div class="row prod-items prod-items-3">
+            {% for producto in productos %}
+            <article class="cf-sm-6 cf-md-4 cf-lg-4 col-xs-6 col-sm-6 col-md-4 col-lg-4 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <p class="prod-badge">
+                            <span class="badge-1">{{producto.get_sexo_display}}</span>
+                    </p>
+                        <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
+                            <img src="{{producto.imagen.url}}" alt="">
+                        </a>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">${{producto.precio}}</p>
+                            <p class="prod-i-categ"><a
+                                    href="catalog-gallery.html">{{producto.marca.nombre}}</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a
+                                href="{% url 'web:producto' producto.id %}">{{producto.nombre}}</a>
+                        </h3>
+                    </div>
                 </div>
-            </div>
-        </article>      
-        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
-            <div class="sectgl prod-i">
-                <div class="prod-i-top">
-                    <a class="prod-i-img" href="{% url 'web:categoria' 4 %}">
-                        <img src="https://i.postimg.cc/nrt7Xbpt/ANILLO.png" alt="">
-                    </a>
-                    <h2 class="prod-i-ttl">Anillo</h2>
-                </div>
-            </div>
-        </article>  
-        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
-            <div class="sectgl prod-i">
-                <div class="prod-i-top">
-                    <a class="prod-i-img" href="{% url 'web:categoria' 1 %}">
-                        <img src="https://i.postimg.cc/SKxppJMB/COLLAR-NI-A.png" alt="">
-                    </a>
-                    <h2 class="prod-i-ttl">Collares</h2>
-                </div>
-            </div>
-        </article>  
-        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
-            <div class="sectgl prod-i">
-                <div class="prod-i-top">
-                    <a class="prod-i-img" href="{% url 'web:categoria' 5 %}">
-                        <img src="https://i.postimg.cc/qRHX3CxY/RELOJ-DAMA.png" alt="">
-                    </a>
-                    <h2 class="prod-i-ttl">Relojes</h2>
-                </div>
-            </div>
-        </article>  
-        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
-            <div class="sectgl prod-i">
-                <div class="prod-i-top">
-                    <a class="prod-i-img" href="{% url 'web:categoria' 7 %}">
-                        <img src="https://i.postimg.cc/d1Fr1cqc/DIJE-ALA.png" alt="">
-                    </a>
-                    <h2 class="prod-i-ttl">Diges</h2>
-                </div>
-            </div>
-        </article>  
-        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
-            <div class="sectgl prod-i">
-                <div class="prod-i-top">
-                    <a class="prod-i-img" href="{% url 'web:categoria' 6 %}">
-                        <img src="https://i.postimg.cc/VvrfP53f/GEMELOS.png" alt="">
-                    </a>
-                    <h2 class="prod-i-ttl">Gemelos</h2>
-                </div>
-            </div>
-        </article>    
-    </div>
+            </article>
+            {% endfor %}
+        </div>
 </main>
 {% endblock %}

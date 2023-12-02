@@ -17,12 +17,7 @@ from .models import Categoria, Marca, Producto
 
 
 def index(request):
-    lista_productos = Producto.objects.all()
-
-    context = {
-        'productos': lista_productos
-    }
-    return render(request, 'index.html', context)
+    return render(request, 'index.html')
 
 def contactanos(request):
     return render(request, 'contactanos.html')
@@ -31,18 +26,22 @@ def sobre_nosotros(request):
     return render(request, 'about.html')
 
 def mi_galeria(request):
-    # lista_productos = Producto.objects.all()
+    lista_productos = Producto.objects.all()
 
-    # context = {
-    #     'productos': lista_productos
-    #}
-    return render(request, 'galeria.html')
+    context = {
+        'productos': lista_productos
+    }
+    return render(request, 'galeria.html', context)
 
 
-def shop(request):
+def shop(request, id):
     lista_categorias = Categoria.objects.all()
     lista_marcas = Marca.objects.all()
-    lista_productos = Producto.objects.all()
+    productos_por_pagina = 10  # Cantidad de productos por página
+    id = int(id)
+    start_index = (id - 1) * productos_por_pagina
+    end_index = id * productos_por_pagina
+    lista_productos = Producto.objects.all()[start_index:end_index]
 
     context = {
         'categorias': lista_categorias,
