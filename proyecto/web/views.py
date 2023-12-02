@@ -24,22 +24,19 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-
 def contactanos(request):
     return render(request, 'contactanos.html')
-
 
 def sobre_nosotros(request):
     return render(request, 'about.html')
 
-
 def mi_galeria(request):
-    lista_productos = Producto.objects.all()
+    # lista_productos = Producto.objects.all()
 
-    context = {
-        'productos': lista_productos
-    }
-    return render(request, 'galeria.html', context)
+    # context = {
+    #     'productos': lista_productos
+    #}
+    return render(request, 'galeria.html')
 
 
 def shop(request):

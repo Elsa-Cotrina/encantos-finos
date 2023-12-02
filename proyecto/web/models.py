@@ -24,12 +24,18 @@ class Marca(models.Model):
         return self.nombre
     
 class Producto(models.Model):
+    SEXO_CHOICES = {
+        ('h' , 'men'),
+        ('m' , 'women'),
+        ('c' , 'children')
+    }
     categoria = models.ForeignKey(Categoria,on_delete=models.RESTRICT)
     marca = models.ForeignKey(Marca,on_delete=models.RESTRICT)
     nombre = models.CharField(max_length=254)
     descripcion = models.TextField(null=True)
     precio = models.DecimalField(max_digits=5,decimal_places=2)
     imagen = CloudinaryField('image',default='')
+    sexo = models.CharField(max_length=1,default='5',choices=SEXO_CHOICES)
     
     class Meta:
         db_table = 'tbl_producto'
