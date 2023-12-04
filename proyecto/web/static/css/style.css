@@ -2309,7 +2309,7 @@ body .widget_search .dgwt-wcas-si img {
 	color: #fff;
 	letter-spacing: 10px;
 	text-align: center;
-	margin: 0 0 18px;
+	margin: 0 0 -22px;
 	padding: 0;
 	text-transform: uppercase;
 	position: relative;
@@ -4022,6 +4022,7 @@ div.woof_info_popup {
 .prod-items {
 	position: relative;
 	z-index: 2;
+	width: 100%;
 }
 .prod-items:after {
 	clear: both;
@@ -4197,7 +4198,7 @@ div.woof_info_popup {
 	border: none;
 }
 .prod-items .prod-i-top .prod-i-img:before {
-	position: absolute;
+	position: relative;
 	content: '';
 	left: 0;
 	right: 0;
@@ -4205,7 +4206,6 @@ div.woof_info_popup {
 	bottom: 0;
 	background-color: #f5f5fc;
 	opacity: 0;
-	transition: opacity 0.2s;
 	z-index: 2;
 	border-radius: 15px;
 }
@@ -4329,8 +4329,6 @@ span.badge-1 {
 .prod-items .prod-i:hover .prod-i-actions {
 	opacity: 1;
 }
-
-
 
 .prod-items .sectgl-item {
 	margin: 0 0 30px;
@@ -11720,7 +11718,7 @@ Compare List
 ----------------------------------*/
 .site-footer {
 	padding: 55px 5% 25px;
-	background-color: #ffffff;
+	background-color: #fbe5d5;
 }
 .site-footer .widget {
 	margin-bottom: 20px;
@@ -11766,7 +11764,7 @@ Compare List
 	border: none;
 }
 .site-footer .widget .menu li a:hover {
-	color: #6bc67c;
+	color: #996a49;
 }
 .site-footer .f-logo-wrap {
 	margin-bottom: 40px;
@@ -11780,7 +11778,11 @@ Compare List
 /*----------------------------------
 28 - Footer
 ----------------------------------*/
-
+.categorias {
+	text-align: center;
+	font-size: 30px;
+	font-weight: 900;
+}
 
 
 
