@@ -167,7 +167,7 @@ input:focus {
 ----------------------------------*/
 
 .cont {
-	width: 1200px;
+	width: 1680px;
 	padding-left: 15px;
 	padding-right: 15px;
 	margin: 0 auto;
@@ -4246,7 +4246,8 @@ div.woof_info_popup {
 	font-weight: 400;
 }
 span.badge-1 {
-	background-color: #996a49 !important;
+	background-color: #c79977 !important;
+	border-radius: 5px;
 }
 .prod-items .prod-i .prod-i-ttl {
 	font-size: 18px;
@@ -8942,7 +8943,7 @@ ul.cont-sections li:after {
 	margin-top: 20px;
 }
 .blog-sb-widgets .blog-sb-widget {
-	padding: 25px 30px 30px;
+	padding: 25px 80px 30px;
 	border-top: 1px solid #dcc993;
 	font-size: 15px;
 	color: #686f8a;
@@ -11782,6 +11783,7 @@ Compare List
 	text-align: center;
 	font-size: 30px;
 	font-weight: 900;
+	cursor: pointer;
 }
 
 

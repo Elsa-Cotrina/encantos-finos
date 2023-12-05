@@ -37,7 +37,7 @@ def mi_galeria(request):
 def shop(request, id):
     lista_categorias = Categoria.objects.all()
     lista_marcas = Marca.objects.all()
-    productos_por_pagina = 10  # Cantidad de productos por página
+    productos_por_pagina = 8  # Cantidad de productos por página
     id = int(id)
     start_index = (id - 1) * productos_por_pagina
     end_index = id * productos_por_pagina
@@ -105,13 +105,9 @@ def producto(request, producto_id):
     }
     return render(request, 'producto.html', context)
 
-
 """ vistas para carrito de compras """
-
-
 def carrito(request):
     return render(request, 'carrito.html')
-
 
 def agregar_carrito(request, producto_id):
     if request.method == 'POST':

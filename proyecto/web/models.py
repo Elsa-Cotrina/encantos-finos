@@ -24,18 +24,30 @@ class Marca(models.Model):
         return self.nombre
     
 class Producto(models.Model):
+    PAIS = 'Perú'
     SEXO_CHOICES = {
         ('h' , 'men'),
         ('m' , 'women'),
         ('c' , 'children')
     }
+    MATERIAL_CHOICES = {
+        ('o' , 'oro'),
+        ('p' , 'plata'),
+        ('c' , 'cobre')
+    }
+
     categoria = models.ForeignKey(Categoria,on_delete=models.RESTRICT)
     marca = models.ForeignKey(Marca,on_delete=models.RESTRICT)
     nombre = models.CharField(max_length=254)
     descripcion = models.TextField(null=True)
     precio = models.DecimalField(max_digits=5,decimal_places=2)
     imagen = CloudinaryField('image',default='')
-    sexo = models.CharField(max_length=1,default='5',choices=SEXO_CHOICES)
+    sexo = models.CharField(max_length=1,default='m',choices=SEXO_CHOICES)
+    dimensiones = models.CharField(max_length=100, default="30 x 10 cm")
+    cantidad = models.IntegerField(default=0)
+    peso = models.DecimalField(max_digits=5,decimal_places=2)
+    pais = models.CharField(max_length=100, default=PAIS, editable=False)
+    material = models.CharField(max_length=1,default='o',choices=MATERIAL_CHOICES)
     
     class Meta:
         db_table = 'tbl_producto'
@@ -60,14 +72,14 @@ class Cliente(models.Model):
 
 class Factura(models.Model):
     ESTADO_CHOICES = {
-        ('$' , 'SOLICITADO'),
+        ('s' , 'SOLICITADO'),
         ('p' , 'PAGADO')
     }
     cliente = models.ForeignKey(Cliente,on_delete=models.RESTRICT)
     fecha_registro = models.DateTimeField(auto_now_add=True)
     monto_total = models.DecimalField(max_digits=5,decimal_places=2,default=0)
     direccion_envio = models.TextField(null=True) 
-    estado = models.CharField(max_length=1,default='5',choices=ESTADO_CHOICES)
+    estado = models.CharField(max_length=1,default='s',choices=ESTADO_CHOICES)
     nro_pedido = models.CharField(max_length=20,null=True)
     
     class Meta:

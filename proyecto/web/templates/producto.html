@@ -59,11 +59,11 @@
                                 <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
                             </p>
                             <div class="prod-li-favorites">
-                                <a href="wishlist.html" class="hover-label add_to_wishlist"><i
-                                        class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                <a href="#" class="hover-label add_to_wishlist"><i
+                                        class="icon ion-heart"></i></a>
                             </div>
                             <p class="prod-li-compare">
-                                <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i
+                                <a href="#" class="hover-label prod-li-compare-btn"><i
                                         class="icon ion-arrow-swap"></i></a>
                             </p>
                         </div>
@@ -74,15 +74,15 @@
                             <dt>SKU:</dt>
                             <dd>2135687</dd>
                             <dt>Marca</dt>
-                            <dd><a href="#">Encantos finos</a></dd>
+                            <dd>{{producto.marca}}</dd>
                             <dt>Peso</dt>
-                            <dd>1 kg</dd>
+                            <dd>{{producto.peso}} gm</dd>
                             <dt>Dimensions</dt>
-                            <dd>4 x 50 cm</dd>
+                            <dd>{{producto.dimensiones}} cm</dd>
                             <dt>Fabricante</dt>
-                            <dd>Perú</dd>
+                            <dd>{{producto.pais}}</dd>
                             <dt>Material</dt>
-                            <dd>Oro</dd>
+                            <dd>{{producto.get_material_display}}</dd>
                         </dl>
                     </div>
                 </form>
@@ -97,9 +97,6 @@
                 <li id="prod-desc" class="active" data-prodtab-num="1">
                     <a data-prodtab="#prod-tab-1" href="#">Description</a>
                 </li>
-                <li data-prodtab-num="2" id="prod-props">
-                    <a data-prodtab="#prod-tab-2" href="#">Additional information</a>
-                </li>
             </ul>
             <div class="prod-tab-cont">
                 <p data-prodtab-num="1" class="prod-tab-mob active" data-prodtab="#prod-tab-1">Description</p>
@@ -108,24 +105,6 @@
                         {{producto.descripcion}}
                     </p>
                 </div>
-                <p data-prodtab-num="2" class="prod-tab-mob" data-prodtab="#prod-tab-2">Additional information</p>
-                <div class="prod-tab" id="prod-tab-2">
-                    <dl class="prod-tab-props">
-                        <dt>Peso</dt>
-                        <dd>1 kg</dd>
-                        <dt>Dimensions</dt>
-                        <dd>4 x 50 cm</dd>
-                        <dt>Fabricante</dt>
-                        <dd>
-                            <p><a href="#">Perú</a></p>
-                        </dd>
-                        <dt>Material</dt>
-                        <dd>
-                            <p><a href="#">Oro</a></p>
-                        </dd>
-                    </dl>
-                </div>
-
             </div>
         </div>
     </article>
