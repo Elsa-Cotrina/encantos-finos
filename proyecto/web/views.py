@@ -388,3 +388,22 @@ def correo(request):
         except Exception as e:
             return HttpResponse(f"Error al enviar el correo: {str(e)}")
     return render(request, "index.html")
+
+""" ESTO ES PARA ACTUALIZAR CARRITO """
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+
+@csrf_exempt
+def actualizar_cantidad(request):
+    if request.method == 'POST':
+        producto_id = request.POST.get('producto_id')
+        nueva_cantidad = int(request.POST.get('nueva_cantidad'))
+
+        carrito = Cart(request)
+        carrito.update(producto_id, nueva_cantidad)
+        nuevo_subtotal = carrito.get_subtotal(producto_id)
+
+        print(nuevo_subtotal)
+        return JsonResponse({'subtotal': nuevo_subtotal})
+
+    return render(request, 'carrito.html')

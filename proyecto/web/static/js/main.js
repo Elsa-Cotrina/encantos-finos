@@ -590,23 +590,49 @@ jQuery(document).ready(function ($) {
 			});
 		}
 
-
-
 		// Quantity
-		$('body').on('click', '.qnt-wrap a', function () {
-			var $this = $(this),
-				$input = $this.parent().find('input'),
-				qnt = $input.val();
-			if ($this.hasClass('qnt-plus')) {
-				qnt++;
-			} else if ($this.hasClass('qnt-minus')) {
-				qnt--;
-			}
-			if (qnt > 0) {
-				$input.attr('value', qnt);
-			}
-			return false;
-		});
+		var csrftoken = $('[name=csrfmiddlewaretoken]').val();
+
+        $('body').on('click', '.qnt-wrap a', function () {
+            var $this = $(this),
+                $input = $this.parent().find('input'),
+                productoId = $input.data('product-id'),
+                qnt = $input.val();
+
+            if ($this.hasClass('qnt-plus')) {
+                qnt++;
+            } else if ($this.hasClass('qnt-minus')) {
+                qnt--;
+            }
+            if (qnt > 0) {
+                $input.attr('value', qnt);
+                // Actualizar el input con la nueva cantidad
+                $input.val(qnt);
+
+                // Realizar la solicitud Ajax para actualizar la cantidad en el servidor
+                $.ajax({
+                    url: '/actualizar_cantidad/', // URL de la vista en Django para actualizar la cantidad
+                    type: 'POST',
+                    data: {
+                        'producto_id': productoId,
+                        'nueva_cantidad': qnt
+                    },
+
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    },
+
+                    success: function(response) {
+                        // Actualizar el subtotal en el HTML con el valor devuelto por el servidor
+                        $this.closest('.prod-li-inner').find('.prod-li-total').text(response.subtotal);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                })
+                return false;
+            }
+        });
 
 
 		// Masonry Grids
