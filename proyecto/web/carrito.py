@@ -63,6 +63,7 @@ class Cart:
                 float(nueva_cantidad) * float(self.cart[producto_id]['precio']))
 
         self.save()
+        return self.session["total"]
 
 
     def get_subtotal(self, producto_id):

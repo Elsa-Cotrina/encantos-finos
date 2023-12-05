@@ -400,10 +400,9 @@ def actualizar_cantidad(request):
         nueva_cantidad = int(request.POST.get('nueva_cantidad'))
 
         carrito = Cart(request)
-        carrito.update(producto_id, nueva_cantidad)
+        total = carrito.update(producto_id, nueva_cantidad)
         nuevo_subtotal = carrito.get_subtotal(producto_id)
 
-        print(nuevo_subtotal)
-        return JsonResponse({'subtotal': nuevo_subtotal})
-
+        return JsonResponse({'subtotal': nuevo_subtotal, "total": total})
+        
     return render(request, 'carrito.html')

@@ -625,6 +625,7 @@ jQuery(document).ready(function ($) {
                     success: function(response) {
                         // Actualizar el subtotal en el HTML con el valor devuelto por el servidor
                         $this.closest('.prod-li-inner').find('.prod-li-total').text(response.subtotal);
+						$('.cart-totals-val').text(response.total);
                     },
                     error: function(xhr, status, error) {
                         console.error(error);
