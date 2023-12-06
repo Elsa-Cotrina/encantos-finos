@@ -78,7 +78,7 @@ def productos_por_marca(request, marca_id):
         'marcas': lista_marcas,
         'productos': lista_productos
     }
-    return render(request, 'index.html', context)
+    return render(request, 'shop.html', context)
 
 
 def productos_por_nombre(request):
@@ -107,22 +107,27 @@ def producto(request, producto_id):
 
 """ vistas para carrito de compras """
 def carrito(request):
-    return render(request, 'carrito.html')
+    carrito = Cart(request)
+    productos_carrito = carrito.cart.values()  # Obtiene todos los productos del carrito
+    context = {
+        'productos_carrito': productos_carrito,
+        'total': carrito.total,  # Incluye el total del carrito si lo necesitas en la plantilla
+    }
+    print(productos_carrito)
+    return render(request, 'vercarrito.html', context)
 
 def agregar_carrito(request, producto_id):
     if request.method == 'POST':
         cantidad = int(request.POST['cantidad'])
+
+        obj_producto = Producto.objects.get(pk=producto_id)
+        carrito = Cart(request)
+        print(cantidad,obj_producto)
+        carrito.add(obj_producto, cantidad)
+
+        return redirect('web:carrito')
     else:
-        cantidad = 1
-
-    obj_producto = Producto.objects.get(pk=producto_id)
-    carrito = Cart(request)
-    carrito.add(obj_producto, cantidad)
-
-    print(request.session.get('cart'))
-
-    return render(request, 'carrito.html')
-
+        return render(request, 'carrito.html')
 
 def eliminar_carrito(request, producto_id):
     obj_producto = Producto.objects.get(pk=producto_id)

@@ -27,5 +27,5 @@ urlpatterns = [
     path('about', views.sobre_nosotros,name='about'),
     path('galeria', views.mi_galeria,name='galeria'),
     path('senddata',views.correo,name='senddata'),
-    path('actualizar_cantidad/', views.actualizar_cantidad, name='actualizar_cantidad')
+    path('actualizar_cantidad/', views.actualizar_cantidad, name='actualizar_cantidad'),
 ]

@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="cont maincont">
+    <h1 class="maincont-ttl">Carrito</h1>
+    <div class="page-styling">
+        <div class="woocommerce prod-litems section-list">
+            {% for producto in productos_carrito %}
+            <article class="prod-li sectls">
+                <div class="prod-li-inner">
+                    <a href="product.html" class="prod-li-img">
+                        <img src="{{producto.imagen}}" alt="">
+                    </a>
+                    <div class="prod-li-cont">
+                        <div class="prod-li-ttl-wrap">
+                            <p>
+                                <a href="#">{{producto.categoria}}</a>
+                            </p>
+                            <h3><a href="product.html">{{producto.nombre}}</a></h3>
+                        </div>
+                        <div class="prod-li-prices">
+                            <div class="prod-li-price-wrap">
+                                <p>Price</p>
+                                <p class="prod-li-price">${{producto.precio}}</p>
+                            </div>
+                            <div class="prod-li-qnt-wrap">
+                                <p class="qnt-wrap prod-li-qnt">
+                                    <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
+                                    <input type="text" value="{{producto.cantidad}}" data-product-id="{{producto.producto_id}}">
+                                    <a href="#" class="qnt-minus prod-li-minus"><i
+                                            class="icon ion-arrow-down-b"></i></a>
+                                </p>
+                            </div>
+                            <div class="prod-li-total-wrap">
+                                <p>Subtotal</p>
+                                <p class="prod-li-total">${{producto.subtotal}}</p>
+                            </div>
+                            <div class="prod-li-total-wrap">
+                                <p class="prod-li-add">
+                                    <a href="{% url 'web:carritodel' producto.producto_id %}"
+                                        class="button hover-label prod-addbtn"><i class="icon ion-close-round"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        <div class="cart-actions">
+            <div class="coupon">
+                <input type="text" placeholder="Coupon code">
+                <input type="submit" class="button" producto="Apply">
+            </div>
+            <div class="cart-collaterals">
+                <a href="{% url 'web:carritoclear' %}" class="checkout-button button">Limpiar carrito</a>
+                <a href="{% url 'web:factura' %}" class="checkout-button button">Registar pedido</a>
+                <div class="order-total">
+                    <p class="cart-totals-ttl">Total</p>
+                    <p class="cart-totals-val">{{total}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
