@@ -294,6 +294,10 @@ input:focus {
 	padding-bottom: 50px;
 	position: relative;
 }
+.maincont.carrito {
+	height: 520px;
+}
+
 body .site-content .heading-multishop,
 body .site-content .maincont-ttl {
 	position: relative;
