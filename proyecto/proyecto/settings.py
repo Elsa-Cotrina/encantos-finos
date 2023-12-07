@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'web',
+    'django_admin_tailwind',
     'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',

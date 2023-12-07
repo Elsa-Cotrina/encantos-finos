@@ -4,4 +4,3 @@ django-cors-headers
 Pillow
 cloudinary
 django-paypal
-django-tailwind
