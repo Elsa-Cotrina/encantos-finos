@@ -37,7 +37,8 @@ def mi_galeria(request):
 def shop(request, id):
     lista_categorias = Categoria.objects.all()
     lista_marcas = Marca.objects.all()
-    productos_por_pagina = 8  # Cantidad de productos por página
+    #Se integro el paginado 
+    productos_por_pagina = 8  
     id = int(id)
     start_index = (id - 1) * productos_por_pagina
     end_index = id * productos_por_pagina
@@ -84,7 +85,6 @@ def productos_por_marca(request, marca_id):
 def productos_por_nombre(request):
     """ vista para filtrar productos por buscador """
     nombre = request.POST['nombre']
-
     lista_productos = Producto.objects.filter(nombre__icontains=nombre)
     lista_categorias = Categoria.objects.all()
     lista_marcas = Marca.objects.all()
@@ -94,7 +94,7 @@ def productos_por_nombre(request):
         'marcas': lista_marcas,
         'productos': lista_productos
     }
-    return render(request, 'index.html', context)
+    return render(request, 'shop.html', context)
 
 
 """ esto es para encontrar un solo producto """
@@ -106,6 +106,7 @@ def producto(request, producto_id):
     return render(request, 'producto.html', context)
 
 """ vistas para carrito de compras """
+# Muestra los productos q se agrego al carrito
 def carrito(request):
     carrito = Cart(request)
     productos_carrito = carrito.cart.values()  # Obtiene todos los productos del carrito
@@ -116,6 +117,7 @@ def carrito(request):
     print(productos_carrito)
     return render(request, 'vercarrito.html', context)
 
+#Agrega un producto al carrito
 def agregar_carrito(request, producto_id):
     if request.method == 'POST':
         cantidad = int(request.POST['cantidad'])
@@ -136,7 +138,7 @@ def eliminar_carrito(request, producto_id):
 
     return render(request, 'carrito.html')
 
-
+#Limpía todos los productos del carrito
 def limpiar_carrito(request):
     carrito = Cart(request)
     carrito.clear()
@@ -222,12 +224,14 @@ def cuenta_usuario(request):
 
 
 @login_required(login_url='/login')
+#salir de la cuenta
 def logout_usuario(request):
     logout(request)
     return redirect('/cuenta')
 
 
 @login_required(login_url='/login')
+#actualizar datos del cliente
 def actualizar_cliente(request):
     mensaje_confirmacion = " "
     frm_cliente = ClienteForm(request.POST)
@@ -264,6 +268,7 @@ def actualizar_cliente(request):
 
 
 @login_required(login_url='/login')
+#confirmar la compra del producto
 def confirmar_factura(request):
     try:
         cliente = Cliente.objects.get(usuario=request.user)
@@ -360,7 +365,6 @@ def registrar_pedido(request):
 
     return render(request, 'pago.html', context)
 
-
 @login_required(login_url='/login')
 def pedido_pagado(request):
     context = {}
@@ -374,6 +378,7 @@ def pedido_pagado(request):
 
 
 """ solicitar por correo  """
+# Esta funcion me permite enviar los datos del formulario hacia un correo
 from django.core.mail import EmailMessage 
 from django.http import HttpResponse
 def correo(request):
@@ -397,8 +402,8 @@ def correo(request):
 """ ESTO ES PARA ACTUALIZAR CARRITO """
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-
 @csrf_exempt
+# Esta funcion me permite q en tiempo real se actualiza el subtotal y el total
 def actualizar_cantidad(request):
     if request.method == 'POST':
         producto_id = request.POST.get('producto_id')

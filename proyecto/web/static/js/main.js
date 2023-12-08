@@ -592,7 +592,6 @@ jQuery(document).ready(function ($) {
 
 		// Quantity
 		var csrftoken = $('[name=csrfmiddlewaretoken]').val();
-
         $('body').on('click', '.qnt-wrap a', function () {
             var $this = $(this),
                 $input = $this.parent().find('input'),
@@ -608,8 +607,7 @@ jQuery(document).ready(function ($) {
                 $input.attr('value', qnt);
                 // Actualizar el input con la nueva cantidad
                 $input.val(qnt);
-
-                // Realizar la solicitud Ajax para actualizar la cantidad en el servidor
+                // Realizar la solicitud petecion para actualizar la cantidad en el servidor
                 $.ajax({
                     url: '/actualizar_cantidad/', // URL de la vista en Django para actualizar la cantidad
                     type: 'POST',
@@ -617,11 +615,9 @@ jQuery(document).ready(function ($) {
                         'producto_id': productoId,
                         'nueva_cantidad': qnt
                     },
-
                     beforeSend: function(xhr) {
                         xhr.setRequestHeader("X-CSRFToken", csrftoken);
                     },
-
                     success: function(response) {
                         // Actualizar el subtotal en el HTML con el valor devuelto por el servidor
                         $this.closest('.prod-li-inner').find('.prod-li-total').text(response.subtotal);
@@ -634,8 +630,6 @@ jQuery(document).ready(function ($) {
                 return false;
             }
         });
-
-
 		// Masonry Grids
 		if ($('#blog-grid').length > 0) {
 			$('#blog-grid').isotope({
